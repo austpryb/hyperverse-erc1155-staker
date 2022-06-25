@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('@nomiclabs/hardhat-waffle');
+require('@nomiclabs/hardhat-etherscan');
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -20,17 +21,37 @@ task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
 
 const accounts = process.env.NEXT_PRIVATE_KEY !== undefined ? [process.env.NEXT_PRIVATE_KEY] : [];
 
+const chainIds = {
+    goerli: 5,
+    hardhat: 1337,
+    kovan: 42,
+    mainnet: 1,
+    rinkeby: 4,
+    ropsten: 3,
+		edge: 808080
+};
+//sudo pnpm hardhat run scripts/deploy.js --network rinkeby
 module.exports = {
-	solidity: '0.8.4',
+	etherscan: {
+		apiKey: process.env.ETHERSCAN_TOKEN
+	},
+	solidity: '0.8.7',
 	defaultNetwork: 'hardhat',
 	networks: {
 		hardhat: {},
 		ethereum: {
-			url: `https://rinkeby.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_API_KEY}`,
+			url: process.env.NEXT_PUBLIC_WEB3_BASE_URL + process.env.NEXT_PUBLIC_WEB3_API_KEY,
+			chainId: chainIds['rinkeby'],
 			accounts,
 		},
-		metis: {
-			url: 'https://stardust.metis.io/?owner=588',
+		rinkeby: {
+			url: process.env.NEXT_PUBLIC_WEB3_BASE_URL + process.env.NEXT_PUBLIC_WEB3_API_KEY,
+			chainId: chainIds['rinkeby'],
+			accounts,
+		},
+		edge: {
+			url: process.env.NEXT_PUBLIC_WEB3_BASE_URL,
+			chainId: chainIds['edge'],
 			accounts,
 		},
 		avalanche: {

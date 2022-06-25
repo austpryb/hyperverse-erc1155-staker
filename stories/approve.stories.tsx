@@ -22,6 +22,6 @@ const Template = (args) => (
 export const Demo = Template.bind({});
 
 Demo.args = {
-	to: '0x976EA74026E726554dB657fA54763abd0C3a0aa9',
+	to: '0x5e7564d9942F2073d20C6B65d0e73750a6EC8D81', 
 	tokenId: 1
 };

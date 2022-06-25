@@ -5,14 +5,14 @@ import { TransactionReceipt } from '@ethersproject/abstract-provider';
 import { CancellablePromise, pseudoCancellable } from 'real-cancellable-promise';
 import { getEnvironment } from './environment';
 
-export type ERC721LibraryType = Awaited<ReturnType<typeof ERC721LibraryInternal>>;
-export function ERC721Library(
-	...args: Parameters<typeof ERC721LibraryInternal>
-): CancellablePromise<ERC721LibraryType> {
-	return pseudoCancellable(ERC721LibraryInternal(...args));
+export type ERC1155LibraryType = Awaited<ReturnType<typeof ERC1155LibraryInternal>>;
+export function ERC1155Library(
+	...args: Parameters<typeof ERC1155LibraryInternal>
+): CancellablePromise<ERC1155LibraryType> {
+	return pseudoCancellable(ERC1155LibraryInternal(...args));
 }
 
-export async function ERC721LibraryInternal(
+export async function ERC1155LibraryInternal(
 	hyperverse: HyperverseConfig,
 	providerOrSigner?: ethers.providers.Provider | ethers.Signer
 ) {
@@ -24,7 +24,7 @@ export async function ERC721LibraryInternal(
 		providerOrSigner = getProvider(hyperverse.network);
 	}
 	const base = await EvmLibraryBase(
-		'ERC721',
+		'ERC1155',
 		hyperverse,
 		factoryAddress!,
 		FactoryABI,
@@ -68,10 +68,11 @@ export async function ERC721LibraryInternal(
 		}
 	};
 
-	const mint = async (to: string) => {
+
+	const mint = async (to: string, quantity: number) => {
 		try {
 			console.log(base.proxyContract?.signer);
-			const mintTxn = await base.proxyContract?.mint(to);
+			const mintTxn = await base.proxyContract?.mint(to, quantity);
 			return mintTxn.wait() as TransactionReceipt;
 		} catch (error) {
 			throw error;

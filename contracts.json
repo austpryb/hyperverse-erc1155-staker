@@ -32,12 +32,25 @@
       "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
       "factoryAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
     },
-	"mainnet": {}
+    "mainnet": {}
   },
   "hardhat": {
     "testnet": {
       "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
       "factoryAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+    }
+  },
+  "rinkeby": {
+    "testnet": {
+      "contractAddress": "0x5d13B5FDb32f459525999E97B908770BEAc85060",
+      "factoryAddress": "0x0f63661cff100C42Ac2F70Bae51D8c8228406798",
+      "stakerAddress": "0x9Ff8572C5D178488E81B1366bA133cBD02471936"
+    }
+  },
+  "edge": {
+    "testnet": {
+      "contractAddress": "0xc9B1DFd2c38394Db728e637538a6E8E47cBE83AF",
+      "factoryAddress": "0xd758e14Ba516c6aD5feAa303FBCD7d59dF456Bd3"
     }
   }
 }

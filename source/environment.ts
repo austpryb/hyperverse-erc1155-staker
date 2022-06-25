@@ -8,11 +8,11 @@ import {
 
 import Contracts from '../contracts.json';
 import { ContractInterface } from 'ethers';
-import ERC721FactoryABI from '../artifacts/contracts/ERC721Factory.sol/ERC721Factory.json';
-import ERC721ABI from '../artifacts/contracts/ERC721.sol/ERC721.json';
+import ERC1155FactoryABI from '../artifacts/contracts/ERC1155Factory.sol/ERC1155Factory.json';
+import ERC1155ABI from '../artifacts/contracts/ERC1155.sol/ERC155.json';
 
-export const FactoryABI = ERC721FactoryABI.abi as ContractInterface;
-export const ContractABI = ERC721ABI.abi as ContractInterface;
+export const FactoryABI = ERC1155FactoryABI.abi as ContractInterface;
+export const ContractABI = ERC1155ABI.abi as ContractInterface;
 
 const environment = Contracts as EvmEnvironment;
 
@@ -29,6 +29,7 @@ function getEnvironment(blockchainName: Blockchain, network: NetworkConfig) {
 		throw new Error('Blockchain is not supported');
 	}
 	const env = chain[network.type];
+	//console.log(chain, blockchainName);
 	return {
 		...env,
 		ContractABI,

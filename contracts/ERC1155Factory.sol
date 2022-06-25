@@ -2,31 +2,31 @@
 pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
 
-import './hyperverse/CloneFactory.sol';
-import './hyperverse/IHyperverseModule.sol';
-import './ERC721.sol';
-import './utils/Counters.sol';
+import "./hyperverse/CloneFactory.sol";
+import "./hyperverse/IHyperverseModule.sol";
+import "./ERC1155.sol";
+//import "./utils/Counters.sol";
 
 /**
  * @dev Clone Factory Implementation for ERC20 Token
  */
 
-contract ERC721Factory is CloneFactory {
-	using Counters for Counters.Counter;
+contract ERC1155Factory is CloneFactory {
+	//using Counters for Counters.Counter;
 
 	/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ S T A T E @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 	struct Tenant {
-		ERC721 erc721;
+		ERC1155 erc1155;
 		address owner;
 	}
 
-	Counters.Counter public tenantCounter;
+	//Counters.Counter public tenantCounter;
 	mapping(address => Tenant) public tenants;
 	mapping(address => bool) public instance;
 
 	address public immutable owner;
 	address public immutable masterContract;
-	address private hyperverseAdmin = 0x62a7aa79a52591Ccc62B71729329A80a666fA50f;
+	address private hyperverseAdmin = 0x5e7564d9942F2073d20C6B65d0e73750a6EC8D81;
 
 	/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ E V E N T S @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
@@ -66,29 +66,28 @@ contract ERC721Factory is CloneFactory {
 	/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ F U N C T I O N S @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
 	function createInstance(
-		address _tenant,
-		string memory _name,
-		string memory _symbol
+        string memory _uri,
+		address _tenant
 	) external isAuthorized(_tenant) hasAnInstance(_tenant) {
-		ERC721 erc721 = ERC721(createClone(masterContract));
+		ERC1155 erc1155 = ERC1155(createClone(masterContract));
 
 		//initializing tenant state of clone
-		erc721.initialize(_name, _symbol, _tenant);
+		erc1155.initialize(_uri, _tenant);
 
 		//set Tenant data
 		Tenant storage newTenant = tenants[_tenant];
-		newTenant.erc721 = erc721;
+		newTenant.erc1155 = erc1155;
 		newTenant.owner = _tenant;
 		instance[_tenant] = true;
-		tenantCounter.increment();
+		//tenantCounter.increment();
 
-		emit TenantCreated(_tenant, address(erc721));
+		emit TenantCreated(_tenant, address(erc1155));
 	}
 
-	function getProxy(address _tenant) public view returns (ERC721) {
+	function getProxy(address _tenant) public view returns (ERC1155) {
 				if (!instance[_tenant]) {
 			revert InstanceDoesNotExist();
 		}
-		return tenants[_tenant].erc721;
+		return tenants[_tenant].erc1155;
 	}
 }

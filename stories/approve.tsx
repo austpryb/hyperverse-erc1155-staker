@@ -1,9 +1,10 @@
-import { useERC721 } from '../source';
+import { useERC1155 } from '../source';
 import { useEvm } from '@decentology/hyperverse-evm';
 import './style.css';
 
 export const Approve = ({ ...props }: { to: string; tokenId: number }) => {
-	const { approve } = useERC721();
+
+	const { approve } = useERC1155();
 	const { address, Connect } = useEvm();
 
 	return (
