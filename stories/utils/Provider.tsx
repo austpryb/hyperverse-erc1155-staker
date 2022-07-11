@@ -5,13 +5,13 @@ import * as ERC1155 from '../../source';
 
 export const HyperverseProvider: FC<{}> = ({ children }) => {
 	const hyperverse = initialize({
-		blockchain: process.env.STORYBOOK_NETWORK === 'edge' ? Ethereum : Localhost,
+		blockchain: process.env.STORYBOOK_NETWORK === 'rinkeby' ? Ethereum : Localhost,
 		network:
-			process.env.STORYBOOK_NETWORK === 'edge'
+			process.env.STORYBOOK_NETWORK === 'rinkeby'
 				? {
 						type: Network.Testnet,
-						name: 'edge',
-						chainId: 808080,
+						name: process.env.STORYBOOK_NETWORK,
+						chainId: 4,
 						networkUrl: process.env.NEXT_PUBLIC_WEB3_BASE_URL + process.env.NEXT_PUBLIC_WEB3_API_KEY,
 						providerId: process.env.NEXT_PUBLIC_WEB3_API_KEY,
 						//blockExplorer: 'https://rinkeby.etherscan.io',
@@ -26,7 +26,7 @@ export const HyperverseProvider: FC<{}> = ({ children }) => {
 			{
 				bundle: ERC1155,
 				tenantId:
-					process.env.STORYBOOK_NETWORK === 'edge'
+					process.env.STORYBOOK_NETWORK === 'rinkeby'
 						? '0x5e7564d9942F2073d20C6B65d0e73750a6EC8D81'
 						: '0x5e7564d9942F2073d20C6B65d0e73750a6EC8D81',
 			},

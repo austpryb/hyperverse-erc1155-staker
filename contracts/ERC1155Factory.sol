@@ -26,7 +26,7 @@ contract ERC1155Factory is CloneFactory {
 
 	address public immutable owner;
 	address public immutable masterContract;
-	address private hyperverseAdmin = 0x5e7564d9942F2073d20C6B65d0e73750a6EC8D81;
+	address private hyperverseAdmin; //= 0x5e7564d9942F2073d20C6B65d0e73750a6EC8D81;
 
 	/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ E V E N T S @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
@@ -61,12 +61,13 @@ contract ERC1155Factory is CloneFactory {
 	constructor(address _masterContract, address _owner) {
 		masterContract = _masterContract;
 		owner = _owner;
+		hyperverseAdmin = msg.sender;
 	}
 
 	/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ F U N C T I O N S @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
 	function createInstance(
-        string memory _uri,
+    string memory _uri,
 		address _tenant
 	) external isAuthorized(_tenant) hasAnInstance(_tenant) {
 		ERC1155 erc1155 = ERC1155(createClone(masterContract));

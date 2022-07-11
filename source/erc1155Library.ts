@@ -69,10 +69,10 @@ export async function ERC1155LibraryInternal(
 	};
 
 
-	const mint = async (to: string, quantity: number) => {
+	const mint = async (to: string, tokenId: number, amount: number) => {
 		try {
 			console.log(base.proxyContract?.signer);
-			const mintTxn = await base.proxyContract?.mint(to, quantity);
+			const mintTxn = await base.proxyContract?.mint(to, tokenId, amount);
 			return mintTxn.wait() as TransactionReceipt;
 		} catch (error) {
 			throw error;
@@ -83,23 +83,18 @@ export async function ERC1155LibraryInternal(
 		from,
 		to,
 		tokenId,
+		amount,
+		data
 	}: {
 		from: string;
 		to: string;
 		tokenId: number;
+		amount: number;
+		data: string
 	}) => {
 		try {
-			const transferTxn = await base.proxyContract?.safeTransferFrom(from, to, tokenId);
+			const transferTxn = await base.proxyContract?.safeTransferFrom(from, to, tokenId, amount, data);
 			return transferTxn.wait() as TransactionReceipt;
-		} catch (error) {
-			throw error;
-		}
-	};
-
-	const approve = async ({ to, tokenId }: { to: string; tokenId: number }) => {
-		try {
-			const approveTxn = await base.proxyContract?.approve(to, tokenId);
-			return approveTxn.wait() as TransactionReceipt;
 		} catch (error) {
 			throw error;
 		}
@@ -122,7 +117,6 @@ export async function ERC1155LibraryInternal(
 		togglePublicMint,
 		mint,
 		transfer,
-		approve,
 		setApprovalForAll,
 	};
 }

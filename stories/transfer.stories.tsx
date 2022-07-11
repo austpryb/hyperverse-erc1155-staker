@@ -22,7 +22,9 @@ const Template = (args) => (
 export const Demo = Template.bind({});
 
 Demo.args = {
-	from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+	from: '0x5e7564d9942F2073d20C6B65d0e73750a6EC8D81',
 	to: '0x976EA74026E726554dB657fA54763abd0C3a0aa9',
-	tokenId: 1,
+	tokenId: 0,
+	amount: 1,
+	data: '0x'
 };

@@ -1,9 +1,9 @@
-import { useERC721 } from '../source';
+import { useERC1155 } from '../source';
 import { useEvm } from '@decentology/hyperverse-evm';
 import './style.css';
 
 export const TogglePublicMint = ({ ...props }) => {
-	const { togglePublicMint } = useERC721();
+	const { togglePublicMint } = useERC1155();
 	const { Connect } = useEvm();
 
 	return (

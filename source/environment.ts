@@ -9,7 +9,7 @@ import {
 import Contracts from '../contracts.json';
 import { ContractInterface } from 'ethers';
 import ERC1155FactoryABI from '../artifacts/contracts/ERC1155Factory.sol/ERC1155Factory.json';
-import ERC1155ABI from '../artifacts/contracts/ERC1155.sol/ERC155.json';
+import ERC1155ABI from '../artifacts/contracts/ERC1155.sol/ERC1155.json';
 
 export const FactoryABI = ERC1155FactoryABI.abi as ContractInterface;
 export const ContractABI = ERC1155ABI.abi as ContractInterface;

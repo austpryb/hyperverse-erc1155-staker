@@ -22,6 +22,6 @@ const Template = (args) => (
 export const Demo = Template.bind({});
 
 Demo.args = {
-	to: '0x976EA74026E726554dB657fA54763abd0C3a0aa9',
+	to: '0x9649F034fD2Ba3C9E58d556063AA2B7F8777E8F6',
 	approved: true,
 };
