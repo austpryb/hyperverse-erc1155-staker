@@ -31,7 +31,7 @@ async function main() {
 	await hre.run('verify:verify', {
 		address: env[hre.network.name].testnet.stakerAddress, // nftStakerContractAddress
 		constructorArguments: [
-			env[hre.network.name].testnet.contractAddress // nftContractAddress
+			env[hre.network.name].testnet.proxyAddress // nftContractAddress
 		],
 	})
 }

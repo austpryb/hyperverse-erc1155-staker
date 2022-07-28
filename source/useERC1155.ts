@@ -15,7 +15,7 @@ function ERC1155State(initialState: { tenantId: string } = { tenantId: '' }) {
 
 	useEffect(() => {
 		const lib = ERC1155Library(hyperverse, signer || readOnlyProvider).then(setERC1155Library);
-		//console.log(hyperverse);
+		// console.log(hyperverse);
 		return () => {
 			return lib.cancel();
 		};

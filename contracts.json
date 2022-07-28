@@ -15,8 +15,10 @@
   },
   "ethereum": {
     "testnet": {
-      "contractAddress": "0x9649F034fD2Ba3C9E58d556063AA2B7F8777E8F6",
-      "factoryAddress": "0x3792EdB2A13e68D07A01E2367519AcC2a2812e29"
+      "contractAddress": "0x2627038a6dD4fd0dd60b0C44dea7021C6792364d",
+      "factoryAddress": "0x40F2DeEe55340f8a8662C8fc067Be570ec270C4b",
+      "stakerAddress": "0xDc78dCe3665f2Ea18d0F212E13aF540BBbAa3a30",
+      "proxyAddress": "0xb36fFac2C8eFC21cbf2e9f8df9B61e93C4178fD5"
     },
     "mainnet": {}
   },
@@ -29,8 +31,10 @@
   },
   "localhost": {
     "testnet": {
-      "contractAddress": "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0",
-      "factoryAddress": "0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82"
+      "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "factoryAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "stakerAddress": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      "proxyAddress": "0xCafac3dD18aC6c6e92c921884f9E4176737C052c"
     },
     "mainnet": {}
   },
@@ -42,8 +46,8 @@
   },
   "rinkeby": {
     "testnet": {
-      "contractAddress": "0x5ed07Fd362eF1008Cd57b390c4D781465BCca42c",
-      "factoryAddress": "0x533D40e69905033639D90538810cE23d2754669b",
+      "contractAddress": "0xa78dCb1078D7378bE9901617a3678cd1a670dA26",
+      "factoryAddress": "0xD823E723eC7f565B4f817936105316e1ebc03a4f",
       "stakerAddress": "0x9Ff8572C5D178488E81B1366bA133cBD02471936"
     }
   },

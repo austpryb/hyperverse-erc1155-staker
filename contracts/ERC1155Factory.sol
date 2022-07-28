@@ -5,14 +5,14 @@ pragma experimental ABIEncoderV2;
 import "./hyperverse/CloneFactory.sol";
 import "./hyperverse/IHyperverseModule.sol";
 import "./ERC1155.sol";
-//import "./utils/Counters.sol";
+import "./utils/Counters.sol";
 
 /**
  * @dev Clone Factory Implementation for ERC20 Token
  */
 
 contract ERC1155Factory is CloneFactory {
-	//using Counters for Counters.Counter;
+	using Counters for Counters.Counter;
 
 	/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ S T A T E @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 	struct Tenant {
@@ -20,7 +20,7 @@ contract ERC1155Factory is CloneFactory {
 		address owner;
 	}
 
-	//Counters.Counter public tenantCounter;
+	Counters.Counter public tenantCounter;
 	mapping(address => Tenant) public tenants;
 	mapping(address => bool) public instance;
 
@@ -80,7 +80,7 @@ contract ERC1155Factory is CloneFactory {
 		newTenant.erc1155 = erc1155;
 		newTenant.owner = _tenant;
 		instance[_tenant] = true;
-		//tenantCounter.increment();
+		tenantCounter.increment();
 
 		emit TenantCreated(_tenant, address(erc1155));
 	}

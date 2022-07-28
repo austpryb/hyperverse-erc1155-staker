@@ -22,5 +22,6 @@ const Template = (args) => (
 export const Demo = Template.bind({});
 
 Demo.args = {
-	to: ''
+	tokenId: 1,
+	amount: 1
 };

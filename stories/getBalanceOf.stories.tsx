@@ -22,5 +22,6 @@ const Template = (args) => (
 export const Demo = Template.bind({});
 
 Demo.args = {
-	account: '0x5e7564d9942F2073d20C6B65d0e73750a6EC8D81'
+	account: String(process.env.NEXT_ADMIN_PUBLIC_KEY),
+	id: 1
 };

@@ -11,16 +11,16 @@ contract CollectionStaker is ERC1155Receiver {
     mapping(address => Stake) public stakes;
     mapping(address => uint256) public stakingTime;
     mapping(address => uint256) public s_addressToBlocknum;
-    mapping(address => address) public s_addressToOwnedCollections;
+    //mapping(address => address) public s_addressToOwnedCollections;
     address public s_owner;
-    // address tokenContractAddress = 0x67d88AA62A65F708719EFcC57A6fb6f4eAD1fA41; // ERC1155.sol
 
     address[] private stakerIndex;
 
-    event NewStaker(address indexed stakerAddress, uint index);
-    event DeleteStaker(address indexed stakerAddress, uint index);
-    event UpdateStaker(address indexed stakerAddress, uint index);
+    event NewStaker(address indexed stakerAddress, uint256 index);
+    event DeleteStaker(address indexed stakerAddress, uint256 index);
+    // event UpdateStaker(address indexed stakerAddress, uint index);
     // event CreateCollection(address indexed stakerAddress, uint256 tokenId);
+    event NamespaceCreated(address indexed namespaceAddress);
 
     struct Stake {
         uint256 tokenId;
@@ -32,9 +32,10 @@ contract CollectionStaker is ERC1155Receiver {
     constructor(address tokenContractAddress) {
         s_owner = msg.sender;
         NFT = IERC1155(tokenContractAddress);
+        emit NamespaceCreated(address(this));
     }
 
-    function isStaker(address stakerAddress) public view returns(bool isIndeed)
+    function isStaker(address stakerAddress) public view returns(bool assertIsStaker)
     {
         if(stakerIndex.length == 0) return false;
         return (stakerIndex[stakes[stakerAddress].index] == stakerAddress);
@@ -44,7 +45,6 @@ contract CollectionStaker is ERC1155Receiver {
         uint256 tokenId,
         uint256 amount)
         public
-        onlyOwner
         returns(uint256 index)
     {
         require(!isStaker(msg.sender), "msg.sender must be a unique staker");
@@ -61,19 +61,22 @@ contract CollectionStaker is ERC1155Receiver {
     function getStaker(address stakerAddress)
         public
         view
-        returns(uint256 tokenId,
-                uint256 amount,
-                uint256 timestamp,
-                uint256 index,
-                uint256 secondsStaked)
+        returns(
+            uint256 tokenId,
+            uint256 amount,
+            uint256 timestamp,
+            uint256 index,
+            uint256 secondsStaked
+            )
     {
         require(isStaker(msg.sender), "msg.sender must be a staker");
         return(
-        stakes[stakerAddress].tokenId,
-        stakes[stakerAddress].amount,
-        stakes[stakerAddress].timestamp,
-        stakes[stakerAddress].index,
-        block.timestamp - stakes[stakerAddress].timestamp);
+            stakes[stakerAddress].tokenId,
+            stakes[stakerAddress].amount,
+            stakes[stakerAddress].timestamp,
+            stakes[stakerAddress].index,
+            block.timestamp - stakes[stakerAddress].timestamp
+        );
     }
 
     function getStakerCount()
@@ -115,23 +118,9 @@ contract CollectionStaker is ERC1155Receiver {
         stakerIndex.pop();
         delete stakes[keyToMove];
         NFT.safeTransferFrom(address(this), msg.sender, stakes[msg.sender].tokenId, amount,  "0x00");
-        emit DeleteStaker(
-            msg.sender,
-            rowToDelete);
+        emit DeleteStaker(msg.sender, rowToDelete);
         return rowToDelete;
     }
-
-    //function stake(uint256 _tokenId, uint256 _amount) public {
-    //    stakes[msg.sender] = Stake(_tokenId, _amount, block.timestamp);
-    //    NFT.safeTransferFrom(msg.sender, address(this), _tokenId, _amount, "0x00");
-    //}
-
-    //function unstake(uint256 _amount) public {
-    //    require(msg.sender != 0, "msg.sender is not staking a token");
-    //    NFT.safeTransferFrom(address(this), msg.sender, stakes[msg.sender].tokenId, _amount,  "0x00");
-    //    stakingTime[msg.sender] += (block.timestamp - stakes[msg.sender].timestamp);
-    //    delete stakes[msg.sender];
-    //}
 
     function onERC1155Received(
         address operator,
@@ -153,17 +142,6 @@ contract CollectionStaker is ERC1155Receiver {
         return bytes4(keccak256("onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)"));
     }
 
-    //function mintCollectionItem(uint256 tokenId, uint256 amount) external payable {
-    //    require(msg.value >= 100, "Not enough ETH sent; check price!");
-    //    //NFT.mint(msg.sender, tokenId, amount);
-    //    emit CreateCollection(msg.sender, tokenId);
-    //}
-
-    function rotateNonce() external onlyOwner returns (uint256) {
-        s_addressToBlocknum[msg.sender] = block.timestamp;
-        return block.timestamp;
-    }
-
     modifier onlyOwner() {
         require(msg.sender == s_owner);
         _;
@@ -182,6 +160,11 @@ contract CollectionStaker is ERC1155Receiver {
         3. Compare recovered signer to claimed signer
     */
 
+    function rotateNonce() external onlyOwner returns (uint256) {
+        s_addressToBlocknum[msg.sender] = block.timestamp;
+        return block.timestamp;
+    }
+    /*
     function getMessageHash(
         address _to,
         string memory _message,
@@ -189,22 +172,21 @@ contract CollectionStaker is ERC1155Receiver {
     ) public pure returns (bytes32) {
         return keccak256(abi.encodePacked(_to, _message, _nonce));
     }
-
+    */
+    /*
     function getNonce(
         address _signer
     ) public view returns (uint256) {
         return s_addressToBlocknum[_signer];
     }
-
+    */
+    /*
     function getEthSignedMessageHash(bytes32 _messageHash)
         public
         pure
         returns (bytes32)
     {
-        /*
-        Signature is produced by signing a keccak256 hash with the following format:
-        "\x19Ethereum Signed Message\n" + len(msg) + msg
-        */
+
         return
             keccak256(
                 abi.encodePacked("\x19Ethereum Signed Message:\n32", _messageHash)
@@ -249,5 +231,5 @@ contract CollectionStaker is ERC1155Receiver {
         }
 
     }
-
+    */
 }

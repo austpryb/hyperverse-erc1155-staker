@@ -32,28 +32,65 @@ export async function ERC1155LibraryInternal(
 		providerOrSigner
 	);
 
-	const getBalanceOf = async (account: string) => {
+	const getBalanceOf = async (account: string, id: number) => {
 		try {
-			const balance = await base.proxyContract?.balanceOf(account);
+			const balance = await base.proxyContract?.balanceOf(account,id);
+
 			return BigNumber.from(balance) as BigNumber;
 		} catch (error) {
 			throw error;
 		}
 	};
 
-	const getBalance = async () => {
+	const getTotalSupplyOf = async (id: number) => {
 		try {
-			const balance = await base.proxyContract?.balance();
-			return BigNumber.from(balance) as BigNumber;
+			const supply = await base.proxyContract?.totalSupply(id);
+			return BigNumber.from(supply) as BigNumber;
 		} catch (error) {
 			throw error;
 		}
 	};
 
-	const getOwnerOf = async (tokenId: string) => {
+	const isInPolicyModelWhitelist = async (address: string) => {
 		try {
-			const owner = await base.proxyContract?.ownerOf(tokenId);
-			return owner;
+			const whitelisted = await base.proxyContract?.PolicyModelWhitelist(address);
+			return whitelisted;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	const getExists = async () => {
+		try {
+			const isToken = await base.proxyContract?.exists();
+			return isToken;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	const getTenantOwner = async () => {
+		try {
+			const tenantOwner = await base.proxyContract?.getTenantOwner();
+			return tenantOwner;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	const getTokenMetadata = async () => {
+		try {
+			const metadata = await base.proxyContract?.tokenMetadata();
+			return metadata;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	const getTokenCounter = async () => {
+		try {
+			const count = await base.proxyContract?.tokenCounter();
+			return BigNumber.from(count) as BigNumber;
 		} catch (error) {
 			throw error;
 		}
@@ -67,7 +104,6 @@ export async function ERC1155LibraryInternal(
 			throw error;
 		}
 	};
-
 
 	const mint = async (to: string, tokenId: number, amount: number) => {
 		try {
@@ -112,8 +148,12 @@ export async function ERC1155LibraryInternal(
 	return {
 		...base,
 		getBalanceOf,
-		getBalance,
-		getOwnerOf,
+		getTotalSupplyOf,
+		isInPolicyModelWhitelist,
+		getExists,
+		getTenantOwner,
+		getTokenMetadata,
+		getTokenCounter,
 		togglePublicMint,
 		mint,
 		transfer,
