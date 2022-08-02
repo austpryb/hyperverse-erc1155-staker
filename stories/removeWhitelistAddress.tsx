@@ -2,9 +2,10 @@ import { useERC1155 } from '../source';
 import { useEvm } from '@decentology/hyperverse-evm';
 import './style.css';
 
-export const NewInstance = ({ ...props }) => {
-	const { createInstance } = useERC1155();
+export const RemoveWhitelistAddress = ({ ...props }: { _address: string }) => {
+	const { mint } = useERC1155();
 	const { address, Connect } = useEvm();
+	//console.log(address)
 
 	return (
 		<>
@@ -14,10 +15,10 @@ export const NewInstance = ({ ...props }) => {
 				className={['storybook-button', `storybook-button--large`].join(' ')}
 				style={{ color: 'blue' }}
 				onClick={() => {
-					createInstance({ _uri: "test@test.com", _tenant: address });
+					removeWhitelistAddress(props._address);
 				}}
 			>
-				New Instance
+				RemoveWhitelistAddress
 			</button>
 		</>
 	);

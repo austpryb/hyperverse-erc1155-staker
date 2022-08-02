@@ -1,11 +1,11 @@
-import { GetOwnerOf } from './getOwnerOf';
+import { GetTokenCounter } from './getTokenCounter';
 import { HyperverseProvider } from './utils/Provider';
 import React from 'react';
-import Doc from '../docs/getOwnerOf.mdx';
+import Doc from '../docs/getTokenCounter.mdx';
 
 export default {
-	title: 'Components/GetOwnerOf',
-	component: GetOwnerOf,
+	title: 'Components/GetTokenCounter',
+	component: GetTokenCounter,
 	parameters: {
 		docs: {
 			page: Doc,
@@ -15,13 +15,12 @@ export default {
 
 const Template = (args) => (
 	<HyperverseProvider>
-		<GetOwnerOf {...args} />
+		<GetTokenCounter {...args} />
 	</HyperverseProvider>
 );
 
 export const Demo = Template.bind({});
 
 Demo.args = {
-	tokenId: 1,
-	account: String(process.env.NEXT_ADMIN_PUBLIC_KEY)
+
 };
