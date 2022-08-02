@@ -1,5 +1,5 @@
 # Toggle Public Mint
-<p> The `togglePublicMint` function from `erc721Library` ... </p>
+<p> The `togglePublicMint` function from `erc1155Library` ... </p>
 
 ---
 

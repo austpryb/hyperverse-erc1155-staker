@@ -1,6 +1,6 @@
 # Transfer
 
-<p> The `transfer` function from `erc721Library` allows the owner to transfer their NFT to another address. </p>
+<p> The `transfer` function from `erc1155Library` allows the owner to transfer their NFT to another address. </p>
 
 ---
 
