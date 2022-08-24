@@ -1,0 +1,73 @@
+{
+  "metis": {
+    "testnet": {
+      "contractAddress": "0xACec20ad889Ba58Ec9d65AB0aA7C0e0D151222e0",
+      "factoryAddress": "0xb38d8C98646C7F07fdc0512e1DB9ee25BfE77F30"
+    },
+    "mainnet": {}
+  },
+  "avalanche": {
+    "testnet": {
+      "contractAddress": "0x995d701c0CaAeDA88DBF21727202F3a61AF01177",
+      "factoryAddress": "0xACec20ad889Ba58Ec9d65AB0aA7C0e0D151222e0"
+    },
+    "mainnet": {}
+  },
+  "ethereum": {
+    "testnet": {
+      "contractAddress": "0x06E4235df4A046483cFbCA49ced5F6adE290dD5e",
+      "factoryAddress": "0xcABc8B6D69E2A149dC977aaa0b9585eE8B95f947",
+      "nftContractAddress": "0x06E4235df4A046483cFbCA49ced5F6adE290dD5e",
+      "nftFactoryAddress": "0xcABc8B6D69E2A149dC977aaa0b9585eE8B95f947",
+      "nftProxyAddress": "0xdE12Bd35BcBEAacc7e679840222bA01c11241424",
+      "stakerContractAddress": "0xd950033C584A5D83a5885eA66793C03AcD2053AA",
+      "stakerFactoryAddress": "0x89ebFF68171918da0832AB7409E17a2581662378",
+      "stakerProxyAddress": "0xD71F69327672049B7bb45192E9e024ec46Dc74CF"
+    },
+    "mainnet": {}
+  },
+  "polygon": {
+    "testnet": {
+      "contractAddress": "0x1f6c0449EA114c4A5A542d20801650066Ef8767D",
+      "factoryAddress": "0x17f32a93376C24b4EFdAaeA72a1173606e7A2d1C"
+    },
+    "mainnet": {}
+  },
+  "localhost": {
+    "testnet": {
+      "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "factoryAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "stakerAddress": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      "proxyAddress": "0xCafac3dD18aC6c6e92c921884f9E4176737C052c"
+    },
+    "mainnet": {}
+  },
+  "hardhat": {
+    "testnet": {
+      "nftContractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "nftFactoryAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "nftProxyAddress": "0xCafac3dD18aC6c6e92c921884f9E4176737C052c",
+      "stakerContractAddress": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      "stakerFactoryAddress": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      "stakerProxyAddress": "0x856e4424f806D16E8CBC702B3c0F2ede5468eae5"
+    }
+  },
+  "goerli": {
+    "testnet": {
+      "contractAddress": "0x06E4235df4A046483cFbCA49ced5F6adE290dD5e",
+      "factoryAddress": "0xcABc8B6D69E2A149dC977aaa0b9585eE8B95f947",
+      "nftContractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "nftFactoryAddress": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "nftProxyAddress": "0xCafac3dD18aC6c6e92c921884f9E4176737C052c",
+      "stakerContractAddress": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      "stakerFactoryAddress": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      "stakerProxyAddress": "0x856e4424f806D16E8CBC702B3c0F2ede5468eae5"
+    }
+  },
+  "edge": {
+    "testnet": {
+      "contractAddress": "0xc9B1DFd2c38394Db728e637538a6E8E47cBE83AF",
+      "factoryAddress": "0xd758e14Ba516c6aD5feAa303FBCD7d59dF456Bd3"
+    }
+  }
+}
