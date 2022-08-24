@@ -61,13 +61,14 @@ export type HyperverseModuleInstance = {
 
 export type StorageOptions = { name?: Storage; options?: { clientUrl: string, resolveUrl: string} } | undefined;
 
+// Updated to fix multi cntract env
 export type EvmEnvironment = {
 	[key in BlockchainEvm]?: {
 		[key in Network]:
 			| {
 					[key: string]: any;
-					contractAddress: string | null;
-					factoryAddress: string | null;
+					nftContractAddress: string | null;
+					nftFactoryAddress: string | null;
 			  }
 			| {};
 	};

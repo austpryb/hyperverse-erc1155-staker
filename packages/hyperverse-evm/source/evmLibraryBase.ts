@@ -32,9 +32,10 @@ export async function EvmLibraryBase(
 	if (!tenantId) {
 		throw new Error('Tenant ID is required');
 	}
-	
+
 	const setProvider = (provider: ethers.providers.Provider) => {
 		factoryContract = new ethers.Contract(factoryAddress!, factoryABI, provider) as Contract;
+
 		if (proxyContract) {
 			proxyContract = new ethers.Contract(
 				proxyContract.address,
@@ -111,7 +112,7 @@ export async function EvmLibraryBase(
 		if(err.errorName === 'InstanceDoesNotExist') {
 			return;
 		}
-		
+
 		if (!factoryContract?.signer) {
 			throw new Error('Please connect your wallet!');
 		}
@@ -122,6 +123,7 @@ export async function EvmLibraryBase(
 
 		throw err;
 	};
+
 	const getTotalTenants = async () => {
 		try {
 			const tenantCount = await factoryContract.tenantCounter();

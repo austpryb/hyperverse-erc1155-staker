@@ -36,6 +36,8 @@ const ProxyToken = () => {
 	const zeroAddress = data === '0x0000000000000000000000000000000000000000';
 
 	const showInfo = !zeroAddress ? shortenHash(data, 5, 5) : 'You need an instance';
+	console.log(data);
+	console.log(showInfo);
 
 	useEffect(() => {
 		if (addressCopied === true) {

@@ -20,11 +20,11 @@ const Mint = () => {
 	const erc721 = useERC721();
 	const { mutate, isLoading } = useMutation('mint', erc721.mint);
 
-	const [reciever, setReceiver] = useState('');
+	const [receiver, setReceiver] = useState('');
 
 	const mint = async () => {
 		try {
-			mutate(reciever);
+			mutate(receiver);
 		} catch (error) {
 			throw error;
 		}
@@ -49,7 +49,7 @@ const Mint = () => {
 							/>
 							<Button onClick={mint}>
 								{!account
-									? 'Connet Wallet'
+									? 'Connect Wallet'
 									: isLoading
 									? 'txn loading ...'
 									: 'Mint'}
